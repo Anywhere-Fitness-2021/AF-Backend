@@ -15,10 +15,24 @@ router.get("/", (req, res, next)=>{
     })
 })
 
-//[GET] Class By Id
+//[GET] Class By ClassId
 
-router.get("/:id", (req, res, next)=>{
+router.get("/:ClassId", (req, res, next)=>{
     
+const ClassId = req.params;
+
+if(ClassId){
+    Classes.getClassById(ClassId)
+    .then((specificClass)=>{
+        res.status(200).json(specificClass);
+    })
+    .catch((err)=>{
+        res.status(500).json({message: err.message});
+    })
+} else {
+    res.status(406).json({message: "Class Id Required"});
+}
+
 })
 
 //[PUT] / Update Class By ClassId
