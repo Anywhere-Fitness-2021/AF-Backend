@@ -9,11 +9,14 @@ function getClassByClassId(ClassId){
             .where("ClassId", ClassId)
 }
 
-function updateClass(UpdatedClass){
+async function updateClass(UpdatedClass){
 
-    return db("Classes")
+    await db("Classes")
             .where("ClassId", UpdatedClass.ClassId)
             .update(UpdatedClass)
+
+    return getClassByClassId(UpdatedClass.ClassId);
+
 }
 
 async function addClass(classToAdd){

@@ -38,6 +38,24 @@ if(ClassId){
 //[PUT] / Update Class By ClassId
 
 router.put("/:ClassId", (req, res, next)=>{
+
+    const updatedClass = req.body;
+
+    if(updatedClass.ClassId && updatedClass.Name){
+        if (typeof updatedClass.ClassId === "number"){
+            Classes.updateClass(updatedClass)
+            .then((update)=>{
+                res.status(200).json(update);
+            })
+            .catch((err)=>{
+                res.status(500).json({message: err.message});
+            })
+        } else {
+            res.status(406).json({message: "ClassId must be a number"});
+        }
+    } else {
+        res.status(406).json({message: "ClassId and Name are required"});
+    }
     
 })
 
