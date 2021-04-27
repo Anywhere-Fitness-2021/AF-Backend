@@ -4,29 +4,34 @@ function getAllClasses(){
     return db("Classes")
 }
 
-function getClassById(ClassId){
+function getClassByClassId(ClassId){
     return db("Classes")
             .where("ClassId", ClassId)
 }
 
-function updateClass(UpdatedClass){
+async function updateClass(UpdatedClass){
 
-    return db("Classes")
+    await db("Classes")
             .where("ClassId", UpdatedClass.ClassId)
             .update(UpdatedClass)
+
+    return getClassByClassId(UpdatedClass.ClassId);
+
 }
 
-async function addClass(classToAdd){
+ async function addClass(classToAdd){
 
-    const classToAddId = await db("Classes")
-                                .insert(classToAdd)
+        await db("Classes")
+            .insert(classToAdd)
+
+            return getClassByClassId(classToAdd.ClassId)
     
-    return getClassById(classToAddId)
+    
 }
 
-function deleteClass(ClassIdToDelete){
+async function deleteClass(ClassIdToDelete){
     
-    db("Classes")
+    await db("Classes")
         .where("ClassId", ClassIdToDelete)
         .del()
 
@@ -34,5 +39,5 @@ function deleteClass(ClassIdToDelete){
 }
 
 module.exports = {
-    getAllClasses, getClassById, updateClass, addClass, deleteClass
+    getAllClasses, getClassByClassId, updateClass, addClass, deleteClass
 }
