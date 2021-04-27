@@ -89,6 +89,16 @@ router.post("/", (req, res, next)=>{
 
 router.delete("/:ClassId", (req, res, next)=>{
     
+    const { ClassId } = req.params;
+
+    Classes.deleteClass(ClassId)
+    .then((resolution)=>{
+        res.status(200).json(resolution);
+    })
+    .catch((err)=>{
+        res.status(500).json({message: err.message});
+    })
+
 })
 
 module.exports = router;

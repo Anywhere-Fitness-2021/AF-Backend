@@ -29,9 +29,9 @@ async function updateClass(UpdatedClass){
     
 }
 
-function deleteClass(ClassIdToDelete){
+async function deleteClass(ClassIdToDelete){
     
-    db("Classes")
+    await db("Classes")
         .where("ClassId", ClassIdToDelete)
         .del()
 
