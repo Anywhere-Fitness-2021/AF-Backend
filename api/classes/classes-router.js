@@ -23,7 +23,7 @@ const { ClassId } = req.params;
 
 if(ClassId){
     Classes.getClassByClassId(ClassId)
-    .then(([specificClass])=>{
+    .then((specificClass)=>{
         res.status(200).json(specificClass);
     })
     .catch((err)=>{
@@ -62,6 +62,26 @@ router.put("/:ClassId", (req, res, next)=>{
 //[POST] New Class
 
 router.post("/", (req, res, next)=>{
+
+    const newClass = req.body;
+
+    if(newClass.ClassId && newClass.Name){
+        if (typeof newClass.ClassId === "number"){
+            Classes.addClass(newClass)
+            .then((newestClass)=>{
+                res.status(200).json(newestClass);
+            })
+            .catch((err)=>{
+                res.status(500).json({message: err.message});
+            })
+        } else {
+            res.status(406).json({message: "ClassId must be a number"});
+        }
+    } else {
+        res.status(406).json({message: "ClassId and Name are required"});
+    }
+
+
     
 })
 

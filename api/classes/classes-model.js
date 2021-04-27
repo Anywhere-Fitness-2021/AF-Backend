@@ -19,12 +19,14 @@ async function updateClass(UpdatedClass){
 
 }
 
-async function addClass(classToAdd){
+ async function addClass(classToAdd){
 
-    const classToAddId = await db("Classes")
-                                .insert(classToAdd)
+        await db("Classes")
+            .insert(classToAdd)
+
+            return getClassByClassId(classToAdd.ClassId)
     
-    return getClassById(classToAddId)
+    
 }
 
 function deleteClass(ClassIdToDelete){
