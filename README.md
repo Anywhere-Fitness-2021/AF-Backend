@@ -9,9 +9,11 @@ CLASSES ENDPOINTS:
 
 [GET] Class By Id
 
-[PUT] / Update Class By Id
+[PUT] / Update Class By ClassId
 
 [POST] New Class
+
+[DELETE] Class By ClassId
 
 USERS ENDPOINTS:
 
