@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "repository": {
     "type": "git",
