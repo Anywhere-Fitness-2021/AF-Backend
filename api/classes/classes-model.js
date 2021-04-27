@@ -4,7 +4,7 @@ function getAllClasses(){
     return db("Classes")
 }
 
-function getClassById(ClassId){
+function getClassByClassId(ClassId){
     return db("Classes")
             .where("ClassId", ClassId)
 }
@@ -34,5 +34,5 @@ function deleteClass(ClassIdToDelete){
 }
 
 module.exports = {
-    getAllClasses, getClassById, updateClass, addClass, deleteClass
+    getAllClasses, getClassByClassId, updateClass, addClass, deleteClass
 }

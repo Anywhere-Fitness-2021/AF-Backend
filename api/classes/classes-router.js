@@ -19,11 +19,11 @@ router.get("/", (req, res, next)=>{
 
 router.get("/:ClassId", (req, res, next)=>{
     
-const ClassId = req.params;
+const { ClassId } = req.params;
 
 if(ClassId){
-    Classes.getClassById(ClassId)
-    .then((specificClass)=>{
+    Classes.getClassByClassId(ClassId)
+    .then(([specificClass])=>{
         res.status(200).json(specificClass);
     })
     .catch((err)=>{
