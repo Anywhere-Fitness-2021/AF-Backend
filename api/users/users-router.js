@@ -5,9 +5,22 @@ const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../../config/secrets");
 const router = express.Router();
 
+//[GET] All Users
+
+router.get("/", (req, res, next)=>{
+    Users.getAllUsers()
+    .then((allUsers)=>{
+        res.status(200).json(allUsers);
+    })
+    .catch((err)=>{
+        res.status(500).json({message: err.message});
+    })
+})
+
+
 //[POST] Registration
 
-router.post('/register', (req, res) => {
+router.post('/register', (req, res, next) => {
   
     const user = req.body;
   
@@ -39,18 +52,19 @@ router.post('/register', (req, res) => {
   
 //[POST] LOGIN
 
-  router.post('/login', (req, res) => {
+  router.post('/login', (req, res, next) => {
     
-    let { username, password } = req.body;
+    let { Username, Password } = req.body;
   
-    if(username && password){
-      Users.getByUsername(username)
+    if(Username && Password){
+      Users.getByUsername(Username)
       .then(([userLoggingIn])=>{
-        if(userLoggingIn && bcrypt.compareSync(password, userLoggingIn.password)){
+          console.log(userLoggingIn)
+        if(userLoggingIn && bcrypt.compareSync(Password, userLoggingIn.Password)){
           
           const token = buildToken(userLoggingIn);
           
-          res.status(200).json({message: `welcome, ${userLoggingIn.username}`, token});
+          res.status(200).json({message: `welcome, ${userLoggingIn.Username}`, token});
     
         } else {
           res.status(401).json({message: "Invalid credentials"})
@@ -71,6 +85,7 @@ router.post('/register', (req, res) => {
     const payload = {
       subject: userLoggingIn.id,
       username: userLoggingIn.username,
+      role: userLoggingIn.role
     }
     const config = {
       expiresIn: "1d"
