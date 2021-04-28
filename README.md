@@ -61,13 +61,28 @@ END CLASSES ENDPOINTS
 
 START USERS ENDPOINTS 
 
+BASE URL: https://anywherefitness2021.herokuapp.com/
+
 USERS ENDPOINTS:
 
 /api/users
 
 [POST] Registration Of New User
 
+Send POST request to /api/users/register , passing in Username, Password, Role, first letter of property capitalized 
+
+Requires:
+-Username
+-Password
+-Role
+
 [POST] Login Of User
+
+Send POST request to /api/users/login , passing in Username, Password, first letter of property capitalized 
+
+Requires:
+-Username
+-Password
 
 
 END USERS ENDPOINTS 
