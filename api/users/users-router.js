@@ -22,19 +22,19 @@ router.get("/", (req, res, next)=>{
  
 router.post('/register', (req, res, next) => {
   
-    const user = req.body;
+    const User = req.body;
   
     const rounds = process.env.BCRYPT_ROUNDS || 8;
   
-    const hash = bcrypt.hashSync(user.password, rounds);
+    const hash = bcrypt.hashSync(User.Password, rounds);
   
-    user.password = hash;
+    User.Password = hash;
   
-    if(user.username && user.password){
-      if (Users.getByUsername(user.username) === true){
-        res.status(406).json({message: "username taken"});
+    if(User.Username && user.Password){
+      if (Users.getByUsername(User.Username) === true){
+        res.status(406).json({message: "Username taken"});
       } else {
-        Users.createRegistration(user)
+        Users.createRegistration(User)
         .then((newUser)=>{
           console.log(newUser);
           res.status(200).json(newUser);
@@ -45,7 +45,7 @@ router.post('/register', (req, res, next) => {
       
       }
     } else {
-      res.status(406).json({message: "username and password required"})
+      res.status(406).json({message: "Username and password required"})
     }
   
   });
@@ -84,8 +84,8 @@ router.post('/register', (req, res, next) => {
   function buildToken(userLoggingIn){
     const payload = {
       subject: userLoggingIn.id,
-      username: userLoggingIn.username,
-      role: userLoggingIn.role
+      Username: userLoggingIn.username,
+      Role: userLoggingIn.role
     }
     const config = {
       expiresIn: "1d"
