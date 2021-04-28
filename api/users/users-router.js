@@ -30,7 +30,7 @@ router.post('/register', (req, res, next) => {
   
     User.Password = hash;
   
-    if(User.Username && user.Password){
+    if(User.Username && User.Password){
       if (Users.getByUsername(User.Username) === true){
         res.status(406).json({message: "Username taken"});
       } else {
