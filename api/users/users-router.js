@@ -80,7 +80,7 @@ router.post('/register', (req, res, next) => {
           
           const token = buildToken(userLoggingIn);
           
-          res.status(200).json({message: `welcome, ${userLoggingIn.Username} ID: ${userLoggingIn.id}`, token});
+          res.status(200).json({message: `welcome, ${userLoggingIn.Username}`, token});
     
         } else {
           res.status(401).json({message: "Invalid credentials"})
