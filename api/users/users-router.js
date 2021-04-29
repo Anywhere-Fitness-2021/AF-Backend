@@ -16,6 +16,22 @@ router.get("/", (req, res, next)=>{
         res.status(500).json({message: err.message});
     })
 })
+
+//[GET] User By Id
+
+router.get("/:id", (req, res, next)=>{
+
+const { id } = req.params;
+
+Users.getUserById(id)
+.then((specificUser)=>{
+  res.status(200).json(specificUser[0]);
+})
+.catch((err)=>{
+  res.status(500).json({message: err.message});
+})
+
+})
  
  
 //[POST] Registration
