@@ -11,6 +11,8 @@ What follows are how you can interact with the APIs and what you can expect.
 BASE URL: https://anywherefitness2021.herokuapp.com
  
 CLASSES ENDPOINTS: /api/classes
+
+///////////
  
 [GET] All Classes
  
@@ -18,6 +20,8 @@ Send GET request to /api/classes
 
 Returns:
 -an array of objects, each object being a class.
+
+///////////
  
 [GET] Class By ClassId
  
@@ -25,6 +29,8 @@ Send GET request to /api/classes/:ClassId , passing through ClassId
 
 Returns:
 -an array containing one object, the object being the class you requested.
+
+///////////
  
 [PUT] / Update Class By ClassId
  
@@ -48,6 +54,7 @@ Takes:
 Returns:
 -Array containing an object, the object being the updated class
 
+///////////
  
 [POST] New Class
  
@@ -70,6 +77,8 @@ Takes:
 
 Returns:
 -An array containing an object, the object being the new class
+
+///////////
  
 [DELETE] Class By ClassId
  
@@ -92,12 +101,16 @@ BASE URL: https://anywherefitness2021.herokuapp.com
  
 USERS ENDPOINTS: /api/users
 
+///////////
+
 [GET] All Users
 
 Send GET request to /api/users
 
 Returns:
 -An array of objects, each object being a user
+
+///////////
  
 [POST] Registration Of New User
  
@@ -110,6 +123,8 @@ Requires:
 
 Returns:
 -Array containing one object, the object being the new User
+
+///////////
  
 [POST] Login Of User
  
