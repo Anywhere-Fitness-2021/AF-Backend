@@ -33,11 +33,24 @@ beforeAll(async()=>{
 })
 
 //Eliminate excess / added rows from other tests prior to each consecutive test 
-beforeEach(()=>{
+beforeEach(async()=>{
     await db("classes").truncate();
 })
 
 //Destroy additions/changes to database after tests 
 afterAll(async()=>{
     await db.destroy();
+})
+
+describe("server", ()=>{
+  describe("GET All Classes", ()=>{
+    it("Responds With 200 Status", async()=>{
+
+      const actual = await request(server).get("/api/classes");
+      const expected = 200;
+      expect(actual.status).toEqual(expected);
+
+
+    })
+  })
 })
